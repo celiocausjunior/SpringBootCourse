@@ -11,11 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="tb_user")
+@Table(name = "tb_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +36,9 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Long id, String name, String email, String phone, String password) {
+	@JsonCreator
+	public User(@JsonProperty("id") Long id, @JsonProperty("name") String name, @JsonProperty("email") String email,
+			@JsonProperty("phone") String phone, @JsonProperty("password") String password) {
 
 		this.id = id;
 		this.name = name;
